@@ -97,7 +97,21 @@ if(mouseDown) {
     });
 }
 })
-l
+
+// window.addEventListener("pointermove", (e) => {
+//   // Calcularea coordonatelor relative la fereastra
+//   const mouseX = e.clientX / window.innerWidth;
+//   const mouseY = e.clientY / window.innerHeight;
+
+//   // Calcularea coordonatelor în intervalul [-1, 1]
+//   const targetX = mouseX * 2 - 1;
+//   const targetY = -mouseY * 2 + 1;
+
+//   // Actualizarea poziției sferei
+//   mesh.position.x = targetX * 10;
+//   mesh.position.y = targetY * 10;
+// });
+
 
 
 l
