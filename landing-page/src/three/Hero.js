@@ -15,23 +15,32 @@ const Hero = () => {
     );
 
     const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-    //renderer.setClearColor(255, 0, 0, 1);
-
-
+    //renderer.setClearColor(255, 0, 0, 1); 
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
 
-    const geometry = new THREE.BoxGeometry();
+    const geometry = new THREE.BoxGeometry(1, 1,1);
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    const mesh = new THREE.Mesh(geometry, material); //cube
+    scene.add(mesh);
 
     camera.position.z = 5;
 
+    const planeGeometry = new THREE.PlaneGeometry(5, 5, 10, 10); //x, y, nr.div X, nr. div y
+    const planeMaterial = new THREE.MeshBasicMaterial({color: "#ff0000", side: THREE.DoubleSide});
+    const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial); 
+    scene.add(planeMesh);
+
+    console.log(planeGeometry);
     const animate = function () {
       requestAnimationFrame(animate);
 
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      mesh.rotation.x += 0.01;
+      mesh.rotation.y += 0.01;
+      planeMesh.rotation.x += 0.01;
+      planeMesh.rotation.y += 0.01;
+      
+      
 
       renderer.render(scene, camera);
     };
@@ -41,7 +50,7 @@ const Hero = () => {
     // Cleanup function
     return () => {
       renderer.dispose();
-      scene.remove(cube);
+      scene.remove(mesh);
     };
   }, []);
 
